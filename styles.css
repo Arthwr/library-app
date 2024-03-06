@@ -1,0 +1,84 @@
+@import url(normalize.css);
+
+body {
+  font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  justify-content: start;
+  margin: 1rem 10rem;
+}
+
+/* Form */
+form {
+  width: 400px;
+  max-width: 100%;
+  font-size: 1.5rem;
+}
+
+legend {
+  color: white;
+  background: black;
+  padding: 10px 20px;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+fieldset > div {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="range"] {
+  display: block;
+  width: 100%;
+  padding: 4px;
+  margin: 0;
+}
+
+input[type="range"] {
+  padding: 0;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+}
+
+.checkbox-wrapper {
+  display: flex;
+  justify-content: start;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 2rem;
+  margin-left: 5px;
+}
+
+datalist {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+option {
+  padding: 0;
+}
+
+button {
+  width: 60%;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+}

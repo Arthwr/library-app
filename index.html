@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Library App</title>
+  </head>
+  <body>
+    <main>
+      <form action="#" post="GET">
+        <fieldset>
+          <legend>Book form</legend>
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" />
+          </div>
+          <div>
+            <label for="author">Author</label>
+            <input id="author" name="author" type="text" />
+          </div>
+          <div>
+            <label for="pages">Number of pages</label>
+            <input id="pages" name="pages" type="tel" />
+          </div>
+          <div class="checkbox-wrapper">
+            <label for="read-status">I've read this book</label>
+            <input id="read-status" name="read-status" type="checkbox" />
+          </div>
+          <div>
+            <label for="year"> Year </label>
+            <input id="year" name="year" type="tel" />
+          </div>
+          <div>
+            <label for="rating"> Rating </label>
+            <input
+              id="rating"
+              name="rating"
+              type="range"
+              min="1"
+              max="5"
+              list="markers"
+            />
+            <datalist id="markers">
+              <option value="1" label="1"></option>
+              <option value="2" label="2"></option>
+              <option value="3" label="3"></option>
+              <option value="4" label="4"></option>
+              <option value="5" label="5"></option>
+            </datalist>
+          </div>
+          <button type="submit">Submit</button>
+        </fieldset>
+      </form>
+    </main>
+    <script src="scripts.js"></script>
+  </body>
+</html>
