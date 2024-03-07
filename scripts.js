@@ -15,14 +15,15 @@ function Book(name, author, pages, year, read, rating) {
 
 Book.prototype.toggleStatus = function () {
   this.read = this.read === "Read" ? "Not read yet" : "Read";
-  };
+};
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
-  createAndPopulateTableRow(book);
+  const index = myLibrary.indexOf(book);
+  createAndPopulateTableRow(book, index);
 }
 
-function createAndPopulateTableRow(book) {
+function createAndPopulateTableRow(book, index) {
   // Create book data row
   const tableRow = document.createElement("tr");
   tableBody.appendChild(tableRow);
@@ -51,7 +52,13 @@ function createAndPopulateTableRow(book) {
         readCell.textContent = book.read;
       },
     },
-    { text: "Remove", action: () => console.log("Clicked") },
+    {
+      text: "Remove",
+      action: function () {
+        myLibrary.splice(index, 1);
+        tableRow.remove();
+      },
+    },
   ];
 
   actionButtons.forEach((buttonData) => {
