@@ -129,3 +129,14 @@ td {
 .actions-wrapper a:active {
   transform: translateY(2px);
 }
+
+@media (max-width: 700px) {
+  main {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  form {
+    position: static;
+  }
+}

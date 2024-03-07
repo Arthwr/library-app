@@ -69,6 +69,31 @@ function createAndPopulateTableRow(book, index) {
   });
 }
 
+// Populate library with initial mock data
+function generateMockLibrary() {
+  const lotrBook = new Book(
+    "The Lord of The Rings",
+    "J.R.R. Tolkien",
+    1178,
+    1954,
+    "Read",
+    5
+  );
+  const witcherBook = new Book(
+    "The Witcher 3",
+    "Andrzej Sapkowski",
+    3017,
+    1986,
+    "Read",
+    5
+  );
+  addBookToLibrary(lotrBook);
+  addBookToLibrary(witcherBook);
+}
+
+generateMockLibrary();
+
+// Retrieve form data and populate library
 submitButton.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -85,6 +110,3 @@ submitButton.addEventListener("click", (e) => {
   const bookData = new Book(name, author, pages, year, readStatus, rating);
   addBookToLibrary(bookData);
 });
-
-// Remove static mock up data and add that data during page initialization
-// Attach actions buttons through Book object methods (?)
