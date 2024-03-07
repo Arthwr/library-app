@@ -6,21 +6,23 @@ body {
   font-size: 1rem;
   margin: 0;
   padding: 0;
-  height: 100vh;
 }
 
 main {
   display: flex;
   justify-content: space-between;
   align-content: center;
-  margin: 1rem 7rem;
+  margin: 1rem;
 }
 
 /* Form */
 form {
+  position: sticky;
+  top: 1rem;
   width: 400px;
   max-width: 100%;
   font-size: 1.5rem;
+  height: max-content;
 }
 
 legend {
@@ -110,23 +112,20 @@ td {
   text-align: center;
 }
 
-tr > td:last-child {
+.actions-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 10px;
+  gap: 1rem;
 }
 
-td > a {
-  width: max-content;
-  border: 1px solid grey;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
+.actions-wrapper a {
   color: inherit;
   text-decoration: none;
+  background-color: aquamarine;
+  padding: 0.5em 1em;
+  width: max-content;
+  border-radius: 4px;
 }
 
-td > a:active {
+.actions-wrapper a:active {
   transform: translateY(2px);
 }
