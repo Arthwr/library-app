@@ -1,4 +1,25 @@
+const mockData = [
+  {
+    name: "The Lord of The Rings",
+    author: "J.R.R. Tolkien",
+    pages: "1178",
+    year: "1954",
+    read: "Read",
+    rating: "5",
+  },
+  {
+    name: "The Witcher Trilogy",
+    author: "Andrzej Sapkowski",
+    pages: "3017",
+    year: "1986",
+    read: "Read",
+    rating: "5",
+  },
+];
 const myLibrary = [];
+
+//     "The Lord of The Rings",
+"J.R.R. Tolkien", 1178, 1954, "Read", 5;
 const bookPropertyOrder = ["name", "author", "pages", "year", "rating", "read"];
 
 const submitButton = document.getElementById("submit-button");
@@ -70,28 +91,21 @@ function createAndPopulateTableRow(book, index) {
 }
 
 // Populate library with initial mock data
-function generateMockLibrary() {
-  const lotrBook = new Book(
-    "The Lord of The Rings",
-    "J.R.R. Tolkien",
-    1178,
-    1954,
-    "Read",
-    5
-  );
-  const witcherBook = new Book(
-    "The Witcher 3",
-    "Andrzej Sapkowski",
-    3017,
-    1986,
-    "Read",
-    5
-  );
-  addBookToLibrary(lotrBook);
-  addBookToLibrary(witcherBook);
+function init() {
+  mockData.forEach((book) => {
+    const myBook = new Book(
+      book.name,
+      book.author,
+      book.pages,
+      book.year,
+      book.read,
+      book.rating
+    );
+    addBookToLibrary(myBook);
+  });
 }
 
-generateMockLibrary();
+init();
 
 // Retrieve form data and populate library
 submitButton.addEventListener("click", (e) => {
