@@ -17,9 +17,6 @@ const mockData = [
   },
 ];
 const myLibrary = [];
-
-//     "The Lord of The Rings",
-"J.R.R. Tolkien", 1178, 1954, "Read", 5;
 const bookPropertyOrder = ["name", "author", "pages", "year", "rating", "read"];
 
 const submitButton = document.getElementById("submit-button");
