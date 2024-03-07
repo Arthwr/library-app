@@ -13,6 +13,10 @@ function Book(name, author, pages, year, read, rating) {
   this.rating = rating;
 }
 
+Book.prototype.toggleStatus = function () {
+  this.read = this.read === "Read" ? "Not read yet" : "Read";
+  };
+
 function addBookToLibrary(book) {
   myLibrary.push(book);
   createAndPopulateTableRow(book);
@@ -37,9 +41,16 @@ function createAndPopulateTableRow(book) {
   tableRow.appendChild(tableActions);
   tableActions.appendChild(actionsWrapper);
 
-  // Create buttons
+  // Create buttons and assign actions
   const actionButtons = [
-    { text: "Change status", action: () => console.log("Clicked") },
+    {
+      text: "Change status",
+      action: function () {
+        book.toggleStatus();
+        const readCell = tableRow.querySelector("td:nth-child(6)");
+        readCell.textContent = book.read;
+      },
+    },
     { text: "Remove", action: () => console.log("Clicked") },
   ];
 
@@ -67,3 +78,6 @@ submitButton.addEventListener("click", (e) => {
   const bookData = new Book(name, author, pages, year, readStatus, rating);
   addBookToLibrary(bookData);
 });
+
+// Remove static mock up data and add that data during page initialization
+// Attach actions buttons through Book object methods (?)
