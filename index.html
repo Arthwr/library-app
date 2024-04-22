@@ -25,28 +25,37 @@
         </thead>
         <tbody></tbody>
       </table>
-      <form action="#" post="GET" id="book-form">
+      <form action="#" post="GET" id="book-form" novalidate>
         <fieldset>
           <legend>Add a Book</legend>
           <div>
             <label for="name">Name</label>
-            <input id="name" name="name" type="text" />
+            <input id="name" name="name" type="text" required />
+            <span class="error" aria-live="polite"></span>
           </div>
           <div>
             <label for="author">Author</label>
-            <input id="author" name="author" type="text" />
+            <input id="author" name="author" type="text" required />
+            <span class="error" aria-live="polite"></span>
           </div>
           <div>
             <label for="pages">Number of pages</label>
-            <input id="pages" name="pages" type="tel" />
+            <input id="pages" name="pages" type="tel" minlength="2" required />
+            <span class="error" aria-live="polite"></span>
           </div>
           <div class="checkbox-wrapper">
             <label for="read-status">I've read this book</label>
-            <input id="read-status" name="read-status" type="checkbox" />
+            <input
+              id="read-status"
+              name="read-status"
+              type="checkbox"
+              required
+            />
           </div>
           <div>
             <label for="year">Year</label>
-            <input id="year" name="year" type="tel" />
+            <input id="year" name="year" type="tel" minlength="2" maxlength="4" required />
+            <span class="error" aria-live="polite"></span>
           </div>
           <div>
             <label for="rating"> Rating </label>

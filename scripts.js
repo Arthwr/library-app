@@ -112,12 +112,14 @@ const myLibrary = new Library();
 myLibrary.init();
 
 // Retrieve form data and populate library
+const form = document.getElementById("book-form");
 const submitButton = document.getElementById("submit-button");
 
 submitButton.addEventListener("click", (e) => {
   e.preventDefault();
 
-  let form = document.getElementById("book-form");
+  if (!isFormValid()) return;
+
   let name = form.elements["name"].value;
   let author = form.elements["author"].value;
   let pages = form.elements["pages"].value;
@@ -129,4 +131,94 @@ submitButton.addEventListener("click", (e) => {
 
   const bookData = new Book(name, author, pages, year, readStatus, rating);
   myLibrary.addBook(bookData);
+});
+
+// Form validation
+const errorMessages = {
+  name: "Please enter the name of the book",
+  author: "Please enter the author's name",
+  pages: "Please enter the number of pages",
+  year: "Please enter the year published",
+};
+
+const getErrorMessage = (inputElement) => {
+  return errorMessages[inputElement.name] || "Invalid input.";
+};
+
+const showFormError = (inputElement, errorMessage, clear = false) => {
+  const parentDiv = inputElement.closest("div");
+  const errorSpan = parentDiv.querySelector(".error");
+  if (clear) {
+    errorSpan.textContent = "";
+    errorSpan.classList.remove("active");
+  } else {
+    if (errorSpan && !errorSpan.classList.contains("active")) {
+      errorSpan.textContent = errorMessage;
+      errorSpan.classList.add("active");
+    }
+  }
+};
+
+const checkInput = (inputElement) => {
+  let errorMessage = "";
+  let isValid = true;
+
+  // Check for type mismatch for pages input (letters instead of numbers)
+  if (inputElement.name === "pages" && isNaN(inputElement.value)) {
+    errorMessage = "Please enter a valid number of pages.";
+    isValid = false;
+  }
+  // Check for min and max limits for number inputs
+  else if (inputElement.validity.tooShort || inputElement.validity.tooLong) {
+    if (inputElement.validity.tooShort) {
+      errorMessage = `Value must be at least ${inputElement.minLength} numbers length`;
+    } else if (inputElement.validity.tooLong) {
+      errorMessage = `Value must be no more than ${inputElement.maxLength} numbers length`;
+    }
+    isValid = false;
+  }
+
+  // Check inputs for other errors
+  else if (!inputElement.validity.valid) {
+    errorMessage = getErrorMessage(inputElement);
+    isValid = false;
+  }
+
+  if (errorMessage) {
+    showFormError(inputElement, errorMessage);
+  } else {
+    showFormError(inputElement, "", true);
+  }
+
+  return isValid;
+};
+
+const isFormValid = () => {
+  let formIsValid = true;
+
+  for (let i = 0; i < form.elements.length; i++) {
+    const inputElement = form.elements[i];
+    if (
+      inputElement.tagName === "INPUT" &&
+      inputElement.name !== "rating" &&
+      inputElement.name !== "read-status"
+    ) {
+      if (!checkInput(inputElement)) {
+        formIsValid = false;
+      }
+    }
+  }
+
+  return formIsValid;
+};
+
+const formArray = [...form.elements];
+formArray.forEach((inputElement) => {
+  if (
+    inputElement.tagName === "INPUT" &&
+    inputElement.name !== "rating" &&
+    inputElement.name !== "read-status"
+  ) {
+    inputElement.addEventListener("blur", () => checkInput(inputElement));
+  }
 });
